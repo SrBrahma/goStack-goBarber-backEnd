@@ -20,9 +20,10 @@
   },
   "plugins": ["@typescript-eslint", "prettier"],
   "rules": {
-    "class-methods-use-this": "off",
     "prettier/prettier": "error",
+    "import/prefer-default-export": "off",
     "import/extensions": ["error", "ignorePackages", { "ts": "never" }]
+    // "class-methods-use-this": "off",
   },
   "settings": {
     "import/resolver": {

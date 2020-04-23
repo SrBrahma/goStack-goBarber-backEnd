@@ -8,10 +8,10 @@ import {
   JoinColumn,
 } from 'typeorm';
 
-import User from './User';
+import { User } from './User';
 
 @Entity('appointments') // Nome da tabela
-class Appointment {
+export class Appointment {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
@@ -31,5 +31,3 @@ class Appointment {
   @UpdateDateColumn()
   updatedAt: Date;
 }
-
-export default Appointment;
