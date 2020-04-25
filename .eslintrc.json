@@ -22,8 +22,15 @@
   "rules": {
     "prettier/prettier": "error",
     "import/prefer-default-export": "off",
-    "import/extensions": ["error", "ignorePackages", { "ts": "never" }]
-    // "class-methods-use-this": "off",
+    "import/extensions": ["error", "ignorePackages", { "ts": "never" }],
+    "class-methods-use-this": "off",
+    "no-useless-constructor": "off",
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      {
+        "argsIgnorePattern": "_"
+      }
+    ]
   },
   "settings": {
     "import/resolver": {

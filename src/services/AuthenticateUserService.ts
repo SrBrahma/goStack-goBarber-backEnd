@@ -3,6 +3,7 @@ import { compare } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
 import { User } from '../models/User';
 import { jwt } from '../config/auth';
+import { AppError } from '../errors/AppError';
 
 interface Request {
   email: string;
@@ -16,13 +17,13 @@ interface Response {
   token: string;
 }
 export class AuthenticateUserService {
-  static async execute({ email, password }: Request): Promise<Response> {
+  async execute({ email, password }: Request): Promise<Response> {
     const usersRepository = getRepository(User);
 
     const user = await usersRepository.findOne({ where: { email } });
 
     if (!user) {
-      throw new Error(invalidCombination);
+      throw new AppError(invalidCombination, 401);
     }
 
     // user.password -> Senha criptografada
@@ -31,7 +32,7 @@ export class AuthenticateUserService {
     const passwordMathced = await compare(password, user.password);
 
     if (!passwordMathced) {
-      throw new Error(invalidCombination);
+      throw new AppError(invalidCombination, 401);
     }
 
     const token = sign({}, jwt.secret, {
